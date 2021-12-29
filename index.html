@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <div class="top-bar">
+        <h1>
+            My forum
+        </h1>
+    </div>
+    <textarea></textarea>
+    <button>Add a thread!</button>
+    <div class='main'>
+    <ol>
+    </ol>
+    </div>
+    <script src=data.js></script>
+    <!--just to test that it works-->
+    <script>
+        console.log(threads);
+        var container = document.querySelector('ol');
+        function showthread(thread){
+            var html = `
+            <li class="row">
+                <a href="/forum/thread.html?${thread.id}">
+                    <h4 class='title'>
+                        ${thread.title}
+                    </h4>
+                    
+                    <div class="bottom">
+                        <p class='timestamp'>
+                            ${new Date(thread.date).toLocaleString()}
+                        </p>
+                        <p class='comment-count'>
+                            ${thread.comments.length} comments
+                        </p>
+                    </div>
+                </a>
+            </li>
+            `
+            container.insertAdjacentHTML('beforeend', html);
+        }
+        for(let thread of threads){
+            showthread(thread);
+        }
+        var btn = document.querySelector('button')
+        btn.addEventListener('click', function(){
+            //addthread function
+            var txt = document.querySelector('textarea');
+            var thread = {
+                id:threads[threads.length-1].id + 1,
+                title: txt.value,
+                author: 'Ilaria',
+                date : Date.now(),
+                content : "Thread content",
+                comments : []
+            }
+            showthread(thread);
+            threads.push(thread);
+            txt.value = '';
+            localStorage.setItem('threads', JSON.stringify(threads))
+        });
+    </script>
+    <style>
+        body {
+            background-color: lightgrey;
+            margin : 10px 60px;
+            font-size: 25;
+        }
+        a {
+            text-decoration: none;
+            color: lightpink;
+        }
+
+        h1, h4, ol {
+            margin:0;
+        }
+
+        p{
+            margin: 5px 0;
+        }
+
+        .top-bar{
+            color: pink;
+            background-color: purple; 
+            padding: 0 40px;
+        }
+        
+        .main{
+            background-color: darkorchid;
+        }
+
+        .row{
+            padding: 5px 0;
+        }
+
+        .bottom{
+            display: flex;
+            color: #eeff00;
+            font-size: 12px;
+            padding:0;
+        }
+
+        .timestamp{
+            padding-right: 10px;
+        }
+    </style>
+</body>
+</html>
