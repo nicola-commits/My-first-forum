@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <div class='top-bar'>
+        <p class='registertomyforum'>
+            Register to My forum
+        </p>
+    </div>
+    <div class='login-body'>
+        <p>
+            Enter your username please:
+        </p>
+        <textarea id='usernametxt'></textarea>
+        <p>Enter your password please: </p>
+        <textarea id='pwtxt'></textarea>
+        <button id='loginb'>Register</button>
+    </div>
+    <script src='data.js'></script>
+    <script>
+        var btn = document.querySelector('button');
+        btn.addEventListener('click', function(){
+            var username = document.getElementById('usernametxt').value;
+            var pw = document.getElementById('pwtxt').value;
+            console.log(userpw)
+            userpw[username] = pw;
+            console.log(userpw)
+            localStorage['userpw'] = JSON.stringify(userpw);
+            //location.href = '/index.html?'+username;
+        });
+    </script>
+    <style>
+        body {
+            background-color: lightgrey;
+            margin : 10px 60px;
+            font-size: 25;
+        }
+        a {
+            text-decoration: none;
+            color: lightpink;
+        }
+
+        h1, h4, ol {
+            margin:0;
+        }
+
+        p{
+            margin: 5px 0;
+        }
+
+        textarea{
+            width: 60%;
+            height: 80px;
+            background-color: purple;
+            color: white;
+        }
+
+        button{
+            color: pink;
+            background-color: purple;
+        }
+
+        .registertomyforum{
+            font-size: larger;
+        }
+
+        .comment{
+            font-size: 15;
+        }
+
+        .comment-content{
+            font-size: 20;
+            padding-left: 50px;
+        }
+
+        .top-bar{
+            color: pink;
+            background-color: purple; 
+            padding: 0 40px;
+        }
+        
+        .main{
+            background-color: darkorchid;
+        }
+
+        .row{
+            padding: 5px 0;
+        }
+
+        .bottom{
+            display: flex;
+            color: #5a5a5a;
+            font-size: 12px;
+            padding:0;
+        }
+
+        .timestamp{
+            padding-right: 10px;
+        }
+
+        .register{
+            color:black;
+        }
+    </style>
+</body>
+</html>

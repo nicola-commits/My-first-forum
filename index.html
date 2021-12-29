@@ -7,7 +7,7 @@
         </h1>
     </div>
     <textarea></textarea>
-    <button>Add a thread!</button>
+    <button id='createthreadb'>Add a thread!</button>
     <div class='main'>
     <ol>
     </ol>
@@ -15,17 +15,22 @@
     <script src=data.js></script>
     <!--just to test that it works-->
     <script>
+        var username = window.location.search.slice(1)
+        if(username == undefined){
+            username == 'GUEST'
+        }
         console.log(threads);
         var container = document.querySelector('ol');
         function showthread(thread){
             var html = `
             <li class="row">
-                <a href="/forum/thread.html?${thread.id}">
+                <a href="/thread.html?${thread.id}&${username}">
                     <h4 class='title'>
                         ${thread.title}
                     </h4>
                     
                     <div class="bottom">
+                        <p class='author'>${thread.author} -- </p>
                         <p class='timestamp'>
                             ${new Date(thread.date).toLocaleString()}
                         </p>
@@ -41,14 +46,14 @@
         for(let thread of threads){
             showthread(thread);
         }
-        var btn = document.querySelector('button')
+        var btn = document.getElementById('createthreadb')
         btn.addEventListener('click', function(){
             //addthread function
             var txt = document.querySelector('textarea');
             var thread = {
                 id:threads[threads.length-1].id + 1,
                 title: txt.value,
-                author: 'Ilaria',
+                author: username,
                 date : Date.now(),
                 content : "Thread content",
                 comments : []

@@ -5,11 +5,13 @@
         </h1>
     </div>
     <div class="header">
-        
+        <button type="button" onclick="location.href='/index.html'">
+            Back to home
+        </button>
     </div>
-    <textarea>
+    <textarea id='comment-content'>
     </textarea>
-    <button>add comment</button>
+    <button id='add-commentb'>add comment</button>
     <div class="comments">
         
     </div>
@@ -17,8 +19,12 @@
     <script>
         console.log(threads)
         var container = document.querySelector('.header');
-        var id = parseInt(window.location.search.slice(1));
+        var id = parseInt(window.location.search.split('&')[0].slice(1));
         var thread = threads.find(f => f.id == id);
+        var username = window.location.search.split('&')[1]
+        if(username == ""){
+            username == 'GUEST'
+        }
         if(thread == undefined){
             thread = {
                 title : 'unknown',
@@ -67,13 +73,13 @@
             addcomment(comment);
         }
         //add the buttons
-        var btn = document.querySelector('button')
+        var btn = document.getElementById('add-commentb');
         btn.addEventListener('click', function(){
-            var txt = document.querySelector('textarea')
+            var txt = document.getElementById('comment-content')
             var comment = {
                 content:txt.value,
                 date:Date.now(),
-                author:'Ilaria'
+                author:username
             }
             addcomment(comment);
             thread.comments.push(comment);
@@ -109,12 +115,18 @@
             color: white;
         }
 
+        button{
+            color: pink;
+            background-color: purple;
+        }
+
         .comment{
             font-size: 15;
         }
 
         .comment-content{
             font-size: 20;
+            padding-left: 50px;
         }
 
         .top-bar{

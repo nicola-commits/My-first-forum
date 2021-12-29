@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <div class='top-bar'>
+        <p>
+            My forum
+        </p>
+    </div>
+    <div class='login-body'>
+        <p>
+            Enter your username please:
+        </p>
+        <textarea id='usernametxt'></textarea>
+        <p>Enter your password please: </p>
+        <textarea id='pwtxt'></textarea>
+        <button id='loginb'>Log in</button>
+    </div>
+    <div class='register'>
+        <a href='/register.html'>
+            <p>
+                Don't have an account? Register
+            </p>
+        </a>
+    </div>
+    <div class='error'>
+
+    </div>
+    <script src='data.js'></script>
+    <script>
+        var btn = document.querySelector('button');
+        btn.addEventListener('click', function(){
+            var username = document.getElementById('usernametxt').value;
+            var pw = document.getElementById('pwtxt').value;
+            if(userpw[username] == pw){
+                location.href = '/index.html?'+username;
+            }
+            else{
+                console.log('something bad happened')
+                var errors = document.querySelector('.error')
+                var commentHTML = `
+                <p> An error occurred. Please try again </p>
+                `
+                errors.insertAdjacentHTML('beforeend', commentHTML);
+            }
+        });
+    </script>
+    <style>
+        body {
+            background-color: lightgrey;
+            margin : 10px 60px;
+            font-size: 25;
+        }
+        a {
+            background-color : lightgrey;
+            color : black;
+        }
+
+        h1, h4, ol {
+            margin:0;
+        }
+
+        p{
+            margin: 5px 0;
+        }
+
+        textarea{
+            width: 60%;
+            height: 80px;
+            background-color: purple;
+            color: white;
+        }
+
+        button{
+            color: pink;
+            background-color: purple;
+        }
+
+        .comment{
+            font-size: 15;
+        }
+
+        .comment-content{
+            font-size: 20;
+            padding-left: 50px;
+        }
+
+        .top-bar{
+            color: pink;
+            background-color: purple; 
+            padding: 0 40px;
+        }
+        
+        .main{
+            background-color: darkorchid;
+        }
+
+        .row{
+            padding: 5px 0;
+        }
+
+        .bottom{
+            display: flex;
+            color: #5a5a5a;
+            font-size: 12px;
+            padding:0;
+        }
+
+        .timestamp{
+            padding-right: 10px;
+        }
+
+        .error{
+            color: red;
+        }
+
+        
+    </style>
+</body>
+</html>
